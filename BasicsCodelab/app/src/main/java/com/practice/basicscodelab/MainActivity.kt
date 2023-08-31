@@ -1,8 +1,10 @@
 package com.practice.basicscodelab
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
@@ -13,8 +15,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons.Filled
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material3.Button
-import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -25,6 +33,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.practice.basicscodelab.ui.theme.BasicsCodelabTheme
@@ -44,7 +54,7 @@ class MainActivity : ComponentActivity() {
 private fun SuminApp(modifier: Modifier = Modifier) {
     var shouldShowOnBoarding by remember { mutableStateOf(true) }
 
-    Surface(modifier = modifier) {
+    Surface(modifier = modifier, color = MaterialTheme.colorScheme.background) {
         if (shouldShowOnBoarding) {
             OnboardingScreen(onContinueClicked = { shouldShowOnBoarding = false })
         } else {
@@ -87,31 +97,58 @@ private fun Greetings(
 
 @Composable
 private fun Greeting(name: String, modifier: Modifier = Modifier) {
-    var isExpanded by remember { mutableStateOf(false) }
-    val extraPadding by animateDpAsState(
-        targetValue = if (isExpanded) 48.dp else 0.dp, label = "",
-        animationSpec = spring(
-            dampingRatio = Spring.DampingRatioLowBouncy,
-            stiffness = Spring.StiffnessLow
-        )
-    )
-
-    Surface(
-        color = MaterialTheme.colorScheme.primary,
-        modifier = modifier.padding(vertical = 4.dp, horizontal = 8.dp)
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primary
+        ),
+        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
     ) {
-        Row(modifier = Modifier.padding(24.dp)) {
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(bottom = extraPadding.coerceAtLeast(0.dp))
-            ) {
-                Text(text = "Hello,")
-                Text(text = name)
+        CardContent(name)
+    }
+}
+
+@Composable
+private fun CardContent(name: String) {
+    var isExpanded by remember { mutableStateOf(false) }
+
+    Row(
+        modifier = Modifier
+            .padding(24.dp)
+            .animateContentSize(
+                animationSpec = spring(
+                    dampingRatio = Spring.DampingRatioLowBouncy,
+                    stiffness = Spring.StiffnessLow
+                )
+            )
+    ) {
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .padding(8.dp)
+        ) {
+            Text(text = "Hello,")
+            Text(
+                text = name, style = MaterialTheme.typography.headlineMedium.copy(
+                    fontWeight = FontWeight.ExtraBold
+                )
+            )
+            if (isExpanded) {
+                Text(
+                    text = ("Composem ipsum color sit lazy, " +
+                            "padding theme elit, sed do bouncy. ").repeat(4),
+                    modifier = Modifier.padding(top = 8.dp)
+                )
             }
-            ElevatedButton(onClick = { isExpanded = !isExpanded }) {
-                Text(text = if (isExpanded) "Show less" else "Show more")
-            }
+        }
+        IconButton(onClick = { isExpanded = !isExpanded }) {
+            Icon(
+                imageVector = if (isExpanded) Filled.ExpandLess else Filled.ExpandMore,
+                contentDescription = if (isExpanded) {
+                    stringResource(R.string.show_less)
+                } else {
+                    stringResource(R.string.show_more)
+                }
+            )
         }
     }
 }
@@ -124,7 +161,17 @@ fun SuminAppPreview() {
     }
 }
 
-@Preview(showBackground = true, widthDp = 320)
+@Preview(
+    showBackground = true,
+    widthDp = 360,
+    uiMode = UI_MODE_NIGHT_YES,
+    name = "Dark Mode"
+)
+@Preview(
+    showBackground = true,
+    widthDp = 360,
+    name = "Light Mode"
+)
 @Composable
 private fun GreetingsPreview() {
     BasicsCodelabTheme {
