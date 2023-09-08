@@ -21,9 +21,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
@@ -32,7 +37,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -72,9 +81,29 @@ fun SearchBar(
 // Step: Align your body - Alignment
 @Composable
 fun AlignYourBodyElement(
+    @DrawableRes imageId: Int,
+    @StringRes textId: Int,
     modifier: Modifier = Modifier
 ) {
-    // Implement composable here
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+    ) {
+        Image(
+            painter = painterResource(id = imageId),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                // size로 해야 width, height 둘다 88dp로 맞춰짐
+                .size(88.dp)
+                .clip(CircleShape)
+        )
+        Text(
+            text = stringResource(id = textId),
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.paddingFromBaseline(top = 24.dp, bottom = 8.dp)
+        )
+    }
 }
 
 // Step: Favorite collection card - Material Surface
@@ -174,16 +203,18 @@ fun SearchBarPreview() {
     MySootheTheme { SearchBar(Modifier.padding(8.dp)) }
 }
 
-//@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
-//@Composable
-//fun AlignYourBodyElementPreview() {
-//    MySootheTheme {
-//        AlignYourBodyElement(
-//            modifier = Modifier.padding(8.dp)
-//        )
-//    }
-//}
-//
+@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
+@Composable
+fun AlignYourBodyElementPreview() {
+    MySootheTheme {
+        AlignYourBodyElement(
+            imageId = R.drawable.ab1_inversions,
+            textId = R.string.ab1_inversions,
+            modifier = Modifier.padding(8.dp)
+        )
+    }
+}
+
 //@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
 //@Composable
 //fun FavoriteCollectionCardPreview() {
