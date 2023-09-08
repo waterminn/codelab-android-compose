@@ -21,9 +21,19 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.codelab.basiclayouts.ui.theme.MySootheTheme
@@ -40,7 +50,23 @@ class MainActivity : ComponentActivity() {
 fun SearchBar(
     modifier: Modifier = Modifier
 ) {
-    // Implement composable here
+    TextField(
+        value = "",
+        onValueChange = {},
+        leadingIcon = {
+            Icon(imageVector = Icons.Default.Search, contentDescription = null)
+        },
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = MaterialTheme.colorScheme.surface,
+            unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+        ),
+        placeholder = {
+            Text(text = stringResource(id = R.string.placeholder_search))
+        },
+        modifier = modifier
+            .fillMaxWidth()
+            .heightIn(min = 56.dp)
+    )
 }
 
 // Step: Align your body - Alignment
@@ -109,7 +135,7 @@ private fun SootheNavigationRail(modifier: Modifier = Modifier) {
 
 // Step: Landscape Mode
 @Composable
-fun MySootheAppLandscape(){
+fun MySootheAppLandscape() {
     // Implement composable here
 }
 
@@ -148,70 +174,70 @@ fun SearchBarPreview() {
     MySootheTheme { SearchBar(Modifier.padding(8.dp)) }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
-@Composable
-fun AlignYourBodyElementPreview() {
-    MySootheTheme {
-        AlignYourBodyElement(
-            modifier = Modifier.padding(8.dp)
-        )
-    }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
-@Composable
-fun FavoriteCollectionCardPreview() {
-    MySootheTheme {
-        FavoriteCollectionCard(
-            modifier = Modifier.padding(8.dp)
-        )
-    }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
-@Composable
-fun FavoriteCollectionsGridPreview() {
-    MySootheTheme { FavoriteCollectionsGrid() }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
-@Composable
-fun AlignYourBodyRowPreview() {
-    MySootheTheme { AlignYourBodyRow() }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
-@Composable
-fun HomeSectionPreview() {
-    MySootheTheme { HomeSection() }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
-@Composable
-fun ScreenContentPreview() {
-    MySootheTheme { HomeScreen() }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
-@Composable
-fun BottomNavigationPreview() {
-    MySootheTheme { SootheBottomNavigation(Modifier.padding(top = 24.dp)) }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
-@Composable
-fun NavigationRailPreview() {
-    MySootheTheme { SootheNavigationRail() }
-}
-
-@Preview(widthDp = 360, heightDp = 640)
-@Composable
-fun MySoothePortraitPreview() {
-    MySootheAppPortrait()
-}
-
-@Preview(widthDp = 640, heightDp = 360)
-@Composable
-fun MySootheLandscapePreview() {
-    MySootheAppLandscape()
-}
+//@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
+//@Composable
+//fun AlignYourBodyElementPreview() {
+//    MySootheTheme {
+//        AlignYourBodyElement(
+//            modifier = Modifier.padding(8.dp)
+//        )
+//    }
+//}
+//
+//@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
+//@Composable
+//fun FavoriteCollectionCardPreview() {
+//    MySootheTheme {
+//        FavoriteCollectionCard(
+//            modifier = Modifier.padding(8.dp)
+//        )
+//    }
+//}
+//
+//@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
+//@Composable
+//fun FavoriteCollectionsGridPreview() {
+//    MySootheTheme { FavoriteCollectionsGrid() }
+//}
+//
+//@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
+//@Composable
+//fun AlignYourBodyRowPreview() {
+//    MySootheTheme { AlignYourBodyRow() }
+//}
+//
+//@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
+//@Composable
+//fun HomeSectionPreview() {
+//    MySootheTheme { HomeSection() }
+//}
+//
+//@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
+//@Composable
+//fun ScreenContentPreview() {
+//    MySootheTheme { HomeScreen() }
+//}
+//
+//@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
+//@Composable
+//fun BottomNavigationPreview() {
+//    MySootheTheme { SootheBottomNavigation(Modifier.padding(top = 24.dp)) }
+//}
+//
+//@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
+//@Composable
+//fun NavigationRailPreview() {
+//    MySootheTheme { SootheNavigationRail() }
+//}
+//
+//@Preview(widthDp = 360, heightDp = 640)
+//@Composable
+//fun MySoothePortraitPreview() {
+//    MySootheAppPortrait()
+//}
+//
+//@Preview(widthDp = 640, heightDp = 360)
+//@Composable
+//fun MySootheLandscapePreview() {
+//    MySootheAppLandscape()
+//}
