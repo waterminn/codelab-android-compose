@@ -189,9 +189,20 @@ fun FavoriteCollectionsGrid(
 // Step: Home section - Slot APIs
 @Composable
 fun HomeSection(
+    @StringRes title: Int,
+    content: @Composable () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    // Implement composable here
+    Column(modifier = modifier) {
+        Text(
+            text = stringResource(id = title),
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier
+                .paddingFromBaseline(top = 40.dp, bottom = 16.dp)
+                .padding(horizontal = 16.dp)
+        )
+        content()
+    }
 }
 
 // Step: Home screen - Scrolling
@@ -295,12 +306,19 @@ fun AlignYourBodyRowPreview() {
     MySootheTheme { AlignYourBodyRow() }
 }
 
-//@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
-//@Composable
-//fun HomeSectionPreview() {
-//    MySootheTheme { HomeSection() }
-//}
-//
+@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
+@Composable
+fun HomeSectionPreview() {
+    MySootheTheme {
+        HomeSection(
+            title = R.string.align_your_body,
+            content = {
+                AlignYourBodyRow()
+            }
+        )
+    }
+}
+
 //@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
 //@Composable
 //fun ScreenContentPreview() {
