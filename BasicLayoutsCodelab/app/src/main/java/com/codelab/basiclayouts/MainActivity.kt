@@ -22,6 +22,7 @@ import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -50,6 +51,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -261,7 +263,13 @@ private fun SootheBottomNavigation(modifier: Modifier = Modifier) {
 // Step: MySoothe App - Scaffold
 @Composable
 fun MySootheAppPortrait() {
-    // Implement composable here
+    MySootheTheme {
+        Scaffold(
+            bottomBar = { SootheBottomNavigation() }
+        ) { padding ->
+            HomeScreen(Modifier.padding(padding))
+        }
+    }
 }
 
 // Step: Bottom navigation - Material
@@ -378,12 +386,12 @@ fun BottomNavigationPreview() {
 //    MySootheTheme { SootheNavigationRail() }
 //}
 //
-//@Preview(widthDp = 360, heightDp = 640)
-//@Composable
-//fun MySoothePortraitPreview() {
-//    MySootheAppPortrait()
-//}
-//
+@Preview(widthDp = 360, heightDp = 800)
+@Composable
+fun MySoothePortraitPreview() {
+    MySootheAppPortrait()
+}
+
 //@Preview(widthDp = 640, heightDp = 360)
 //@Composable
 //fun MySootheLandscapePreview() {
