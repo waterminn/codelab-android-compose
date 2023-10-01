@@ -49,8 +49,11 @@ fun ReplyEmailThreadItem(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .background(MaterialTheme.colorScheme.background)
-            .padding(20.dp)
+            .background(
+                MaterialTheme.colorScheme.background,
+                MaterialTheme.shapes.medium
+            )
+            .padding(16.dp)
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
             ReplyProfileImage(
