@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CollapsibleCalendar.iml" filepath="$PROJECT_DIR$/.idea/modules/CollapsibleCalendar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CollapsibleCalendar.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CollapsibleCalendar.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CollapsibleCalendar.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CollapsibleCalendar.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CollapsibleCalendar.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CollapsibleCalendar.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CollapsibleCalendar.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CollapsibleCalendar.app.unitTest.iml" />
+    </modules>
+  </component>
+</project>
